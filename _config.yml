@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 引领潮流
 subtitle:
 description:
-author: John Doe
+author: CHEN TONG
 language:
 timezone:
 
@@ -80,3 +80,4 @@ deploy:
   type: git
   repo: git@github.com:yinlingchaoliu/yinlingchaoliu.github.io.git
   branch: master
+

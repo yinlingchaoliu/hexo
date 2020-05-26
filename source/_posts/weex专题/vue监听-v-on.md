@@ -1,0 +1,69 @@
+---
+title: vue监听-v-on
+date: 2020-05-26 10:55:48
+categories:
+- weex专题
+---
+v-on缩写
+```
+<!-- 完整语法 -->
+<a v-on:click="doSomething"></a>
+<!-- 缩写 -->
+<a @click="doSomething"></a>
+```
+
+watch 相应数据变化
+```
+<div id = "app">
+    <p style = "font-size:25px;">计数器: {{ counter }}</p>
+    <button @click = "counter++" style = "font-size:25px;">点我</button>
+</div>
+<script type = "text/javascript">
+var vm = new Vue({
+    el: '#app',
+    data: {
+        counter: 1
+    }
+});
+vm.$watch('counter', function(nval, oval) {
+    alert('计数器值的变化 :' + oval + ' 变为 ' + nval + '!');
+});
+</script>
+```
+
+与v-model联动
+```
+<div id = "computed_props">
+    千米 : <input type = "text" v-model = "kilometers">
+    米 : <input type = "text" v-model = "meters">
+</div>
+<p id="info"></p>
+<script type = "text/javascript">
+    var vm = new Vue({
+    el: '#computed_props',
+    data: {
+        kilometers : 0,
+        meters:0
+    },
+    methods: {
+    },
+    computed :{
+    },
+    watch : {
+        kilometers:function(val) {
+            this.kilometers = val;
+            this.meters = this.kilometers * 1000
+        },
+        meters : function (val) {
+            this.kilometers = val/ 1000;
+            this.meters = val;
+        }
+    }
+    });
+    // $watch 是一个实例方法
+    vm.$watch('kilometers', function (newValue, oldValue) {
+    // 这个回调将在 vm.kilometers 改变后调用
+    document.getElementById ("info").innerHTML = "修改前值为: " + oldValue + "，修改后值为: " + newValue;
+})
+</script>
+```
